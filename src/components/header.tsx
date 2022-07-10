@@ -18,12 +18,16 @@ const Header = () => {
         {router.route === '/pokemon/[pokemonId]' && (
           <button onClick={() => router.back()}>Voltar</button>
         )}
-        <Link href='/'>
-          <a>Home</a>
-        </Link>
-        <Link href='/'>
-          <a>Sobre</a>
-        </Link>
+        {router.route !== '/' && (
+          <Link href='/'>
+            <a>Home</a>
+          </Link>
+        )}
+        {router.route !== '/sobre' && (
+          <Link href='/sobre'>
+            <a>Sobre</a>
+          </Link>
+        )}
       </NavContainer>
     </Container>
   )
