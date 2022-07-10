@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useQuery } from 'react-query'
 import api from '../../../services/api'
-import { Container, CardContainer, Card } from '../../styles/gen-one'
+import {
+  Container,
+  InputContainer, 
+  CardContainer,
+  Card
+} from '../../styles/pokemons'
 
 interface Pokemon {
   name: string
@@ -11,29 +17,61 @@ interface Pokemon {
 }
 
 const GenOne = () => {
-  const [pokemonGenOneList, setPokemonGenOneList] = useState([])
-
   const genOnePokemons = 151
+  
+  const { data } = useQuery<Pokemon[]>(
+    'genOneList',
+    async () => {
+      const response = await api.get(`/?limit=${genOnePokemons}`)
 
-   const getPokemonsGenOne = async () => {
-     const response = await api.get(`/?limit=${genOnePokemons}`)
+      response.data.results.forEach((item: Pokemon, index: number) => {
+        item.id = index + 1
+      })
 
-     response.data.results.forEach((item: Pokemon, index: number) => {
-       item.id = index + 1
-     })
+      return response.data.results
+    },
+    {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60
+    }
+  )
 
-     setPokemonGenOneList(response.data.results)
-   }
+  const [filteredPokemon, setFilteredPokemon] = useState<Pokemon[] | undefined>(
+    []
+  )
 
-   useEffect(() => {
-     getPokemonsGenOne()
-   }, [])
+  useEffect(() => {
+    setFilteredPokemon(data)
+  }, [data])
+
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    const searchByNameOrNumber = e.target.value
+    const filter = data?.filter(pokemon => {
+      return (
+        pokemon.name
+          .toLowerCase()
+          .includes(searchByNameOrNumber.toLowerCase()) ||
+        pokemon.id.toString() === searchByNameOrNumber ||
+        pokemon.id.toString().padStart(3, '0') ===
+          searchByNameOrNumber.padStart(3, '0')
+      )
+    })
+    setFilteredPokemon(filter)
+  }
 
    return (
      <Container>
-      <h1>Geração I</h1>
+       <h2>Geração I</h2>
+       <InputContainer>
+         <input
+           type='text'
+           placeholder='Pesquisar...'
+           onChange={handleSearch}
+         />
+         <span className='material-symbols-outlined'>search</span>
+       </InputContainer>
        <CardContainer>
-         {pokemonGenOneList.map((pokemon: Pokemon) => (
+         {filteredPokemon?.map((pokemon: Pokemon) => (
            <Link href={`/pokemon/${pokemon.id}`} key={pokemon.id}>
              <a>
                <Card>

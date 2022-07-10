@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { useQuery } from 'react-query'
 import api from '../../../services/api'
 import {
   Container,
@@ -11,19 +12,33 @@ import {
   HightContainer,
 } from '../../styles/pokemon'
 
-interface Type {
-  name: string
-  url: string
-}
-
-interface PokemonType {
-  slote: number
-  type: Type
-}
-
 interface Pokemon {
   name: string
-  types: PokemonType[]
+  types: [
+    {
+      type: {
+        name:
+          | 'normal'
+          | 'fire'
+          | 'water'
+          | 'electric'
+          | 'grass'
+          | 'ice'
+          | 'fighting'
+          | 'poison'
+          | 'ground'
+          | 'flying'
+          | 'psychic'
+          | 'bug'
+          | 'rock'
+          | 'ghost'
+          | 'dragon'
+          | 'dark'
+          | 'steel'
+          | 'fairy'
+      }
+    }
+  ]
   height: number
   weight: number
   id: string | string[] | undefined
@@ -31,44 +46,44 @@ interface Pokemon {
 
 const Pokemon = () => {
   const router = useRouter()
-  const [pokemon, setPokemon] = useState<Pokemon>()
-  const id = router.query.pokemonId
-
-
-  const getPokemon = async () => {
-    try {
-      const response = await api.get(`/${id}`)   
-      const { name, types, height, weight } = response.data
-      setPokemon({name, types, height, weight, id})
-    } catch (error) {
-      Router.push('/')
-    }
-  }
+  const [id, setId] = useState(router.query.pokemonId)
 
   useEffect(() => {
-    getPokemon()
-  }, [])
-  
-  console.log(pokemon)
+    setId(router.query.pokemonId)
+  }, [router.query.pokemonId])
 
-  if (pokemon) {
+  const { data } = useQuery<Pokemon>(
+    ['pokemon', id],
+    async () => {
+      const response = await api.get(`/${id}`) 
+      const { name, types, height, weight } = response.data
+
+      return { name, types, height, weight, id }
+    },
+    {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60
+    }
+  )
+
+  if (data) {
     return (
       <Container>
-        <h1>{pokemon.name}</h1>
+        <h1>{data.name}</h1>
         <Image
-          src={`https://cdn.traction.one/pokedex/pokemon/${pokemon.id}.png`}
+          src={`https://cdn.traction.one/pokedex/pokemon/${data.id}.png`}
           width='200'
           height='200'
-          alt={pokemon.name}
+          alt={data.name}
         />
         <NumberContainer>
           <h2>Número:</h2>
-          <p>#{pokemon.id?.toString().padStart(3, '0')}</p>
+          <p>#{data.id?.toString().padStart(3, '0')}</p>
         </NumberContainer>
         <TypeContainer>
           <h3>Tipo:</h3>
           <div>
-            {pokemon.types.map((item, index) => (
+            {data.types.map((item, index) => (
               <Type BackgroundColor={item.type.name} key={index}>
                 {item.type.name}
               </Type>
@@ -78,11 +93,11 @@ const Pokemon = () => {
         <DataContainer>
           <HightContainer>
             <h3>Altura:</h3>
-            <p>{pokemon.height * 10} cm</p>
+            <p>{data.height * 10} cm</p>
           </HightContainer>
           <div>
             <h3>Peso:</h3>
-            <p>{pokemon.weight / 10} kg</p>
+            <p>{data.weight / 10} kg</p>
           </div>
         </DataContainer>
       </Container>
