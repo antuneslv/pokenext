@@ -7,6 +7,7 @@ export const Container = styled('header', {
   justifyContent: 'space-between',
   alignItems: 'center',
   borderBottom: '1px solid #dbdbdb',
+  
   '@media (min-width: 720px)': {
     padding: '20px 60px'
   },

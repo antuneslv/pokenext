@@ -31,6 +31,6 @@ export const Main = styled('main', {
 
   a: {
     textDecoration: 'none',
-    color: 'red'
+    color: '#ff0000'
   }
 })
