@@ -5,9 +5,10 @@ export const Container = styled('div', {
   margin: '0 auto',
   padding: '40px',
 
-  h1: {
+  h2: {
     textAlign: 'center',
-    margin: '80px 0'
+    margin: '80px 0',
+    fontSize: '40px'
   },
 
   a: {
@@ -22,13 +23,37 @@ export const Container = styled('div', {
   }
 })
 
+export const InputContainer = styled('div', {
+  width: '280px',
+  height: '50px',
+  padding: '8px 16px',
+  borderRadius: '10px',
+  backgroundColor: '#fff',
+  display: 'flex',
+  alignItems: 'center',
+  margin: '0 auto 80px',
+
+  input: {
+    border: '0',
+    outline: '0',
+    fontSize: '20px',
+    width: '100%'
+  },
+
+  span: {
+    color: '#767676'
+  }
+})
+
 export const CardContainer = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+  justifyItems: 'center',
   gap: '60px'
 })
 
 export const Card = styled('article', {
+  width: '300px',
   height: '400px',
   display: 'flex',
   flexDirection: 'column',
