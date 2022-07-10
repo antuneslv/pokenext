@@ -82,7 +82,7 @@ const GenFive = () => {
                    height='140'
                    alt={pokemon.name}
                  />
-                 <span>Nº{pokemon.id.toString().padStart(3, '0')}</span>
+                 <span>Nº{pokemon.id.toString()}</span>
                  <p>{pokemon.name}</p>
                </Card>
              </a>

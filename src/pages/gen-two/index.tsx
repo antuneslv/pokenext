@@ -54,9 +54,7 @@ const GenTwo = () => {
         pokemon.name
           .toLowerCase()
           .includes(searchByNameOrNumber.toLowerCase()) ||
-        pokemon.id.toString() === searchByNameOrNumber ||
-        pokemon.id.toString().padStart(3, '0') ===
-          searchByNameOrNumber.padStart(3, '0')
+        pokemon.id.toString() === searchByNameOrNumber
       )
     })
     setFilteredPokemon(filter)
@@ -84,7 +82,7 @@ const GenTwo = () => {
                    height='140'
                    alt={pokemon.name}
                  />
-                 <span>Nº{pokemon.id.toString().padStart(3, '0')}</span>
+                 <span>Nº{pokemon.id.toString()}</span>
                  <p>{pokemon.name}</p>
                </Card>
              </a>
