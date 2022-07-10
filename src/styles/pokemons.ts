@@ -8,7 +8,10 @@ export const Container = styled('div', {
   h2: {
     textAlign: 'center',
     margin: '80px 0',
-    fontSize: '40px'
+    fontSize: '40px',
+    fontFamily: '"Pokemon Solid", sans-serif',
+    letterSpacing: '4px',
+    fontWeight: '200',
   },
 
   a: {
