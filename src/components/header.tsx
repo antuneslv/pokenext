@@ -15,7 +15,7 @@ const Header = () => {
         </h1>
       </Logo>
       <NavContainer>
-        {router.route !== '/' && (
+        {router.route === '/pokemon/[pokemonId]' && (
           <button onClick={() => router.back()}>Voltar</button>
         )}
         <Link href='/'>

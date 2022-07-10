@@ -14,8 +14,5 @@ export const {
     colors: {
       dark: '#1e1e1e'
     }
-  },
-  media: {
-    bp1: '(min-width: 480px)'
   }
 })
