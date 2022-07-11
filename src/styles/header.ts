@@ -33,7 +33,7 @@ export const Logo = styled('div', {
   },
 
   h1: {
-    fontFamily: '"Pokemon Solid", sans-serif',
+    fontFamily: '"pokemon-solid", sans-serif',
     letterSpacing: '2px',
     fontWeight: '200',
     transform: 'translateY(-8%)',

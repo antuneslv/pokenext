@@ -6,7 +6,7 @@ export const Main = styled('main', {
   padding: '40px',
 
   h2: {
-    fontFamily: '"Pokemon Solid", sans-serif',
+    fontFamily: '"pokemon-solid", sans-serif',
     letterSpacing: '2px',
     fontWeight: '200',
     fontSize: '40px',

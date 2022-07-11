@@ -7,7 +7,7 @@ export const Main = styled('main', {
 
   h2: {
     fontSize: '40px',
-    fontFamily: '"Pokemon Solid", sans-serif',
+    fontFamily: '"pokemon-solid", sans-serif',
     letterSpacing: '2px',
     fontWeight: '200',
     textAlign: 'center',

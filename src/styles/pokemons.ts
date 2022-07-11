@@ -9,7 +9,7 @@ export const Container = styled('div', {
     textAlign: 'center',
     margin: '40px 0 80px',
     fontSize: '40px',
-    fontFamily: '"Pokemon Solid", sans-serif',
+    fontFamily: '"pokemon-solid", sans-serif',
     letterSpacing: '4px',
     fontWeight: '200'
   },
