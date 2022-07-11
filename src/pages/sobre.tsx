@@ -6,9 +6,9 @@ const About = () => {
       <h2>Sobre</h2>
 
       <p>
-        <strong>PokéNext</strong> é um site com as funcionalidades de todas as Pokédex, onde você
-        consegue consultar os dados de todos os pokémons existentes até o
-        momento (primeira geração até a oitava).
+        <strong>PokéNext</strong> é um site com as funcionalidades da
+        Pokédex, onde você consegue consultar os dados de todos os pokémons
+        existentes até o momento (primeira geração até a oitava).
       </p>
       <p>
         Este site foi desenvolvido com{' '}
@@ -35,7 +35,8 @@ const About = () => {
         Desenvolvido por{' '}
         <a href='https://github.com/antuneslv' target='_blank' rel='noreferrer'>
           <strong>Leandro Vendemiatto Antunes</strong>
-        </a>
+        </a>{' '}
+        © 2022
       </p>
     </Main>
   )
