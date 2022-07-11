@@ -1,5 +1,9 @@
 # PokéNext
 
+## Link
+
+[PokéNext](https://pokenext-phi.vercel.app/)
+
 **PokéNext** é um site com as funcionalidades da Pokédex, onde você consegue consultar os dados de todos os pokémons existentes até o momento (primeira geração até a oitava).
 
 A aplicação foi feita em **Next Js** e também utiliza as seguintes bibliotecas:
