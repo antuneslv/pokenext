@@ -8,18 +8,14 @@ export const globalStyles = globalCss({
   },
 
   body: {
-    backgroundColor: '$dark',
-    color: '#fff',
-    fontFamily: '"Roboto", sans-serif'
+    backgroundColor: '$dark'
   },
 
   button: {
-    color: '#fff',
-    fontFamily: '"Roboto", sans-serif',
     fontSize: 'inherit'
   },
-  
-  a: {
+
+  'body, button, a': {
     color: '#fff',
     fontFamily: '"Roboto", sans-serif'
   }
