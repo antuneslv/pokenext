@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import { Main } from '../styles/404'
+import { Container } from '../styles/404'
 
 const NotFound = () => {
   return (
-    <Main>
+    <Container>
       <h2>404</h2>
       <h3>Página não encontrada.</h3>
       <p>A página que você está procurando não existe ou ocorreu um erro.</p>
@@ -14,7 +14,7 @@ const NotFound = () => {
         </Link>
         .
       </p>
-    </Main>
+    </Container>
   )
 }
 

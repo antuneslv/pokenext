@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Container, Logo, NavContainer } from '../styles/header'
+import { Container, Logo, NavContainer } from '../../styles/header'
 
 const Header = () => {
   const router = useRouter()

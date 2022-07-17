@@ -1,6 +1,6 @@
 import { styled } from '@stitches/react'
 
-export const Main = styled('main', {
+export const Container = styled('div', {
   padding: '40px',
   maxWidth: '800px',
   margin: '0 auto',

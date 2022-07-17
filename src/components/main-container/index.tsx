@@ -1,4 +1,4 @@
-import Header from './header'
+import Header from '../header'
 
 const MainContainer = ({ children }: { children: React.ReactNode }) => {
   return (

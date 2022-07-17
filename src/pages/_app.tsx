@@ -5,14 +5,15 @@ import MainContainer from '../components/main-container'
 import { globalStyles } from '../styles/global'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  {globalStyles()}
+  
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-      <MainContainer>
-        <Component {...pageProps} />
-      </MainContainer>
-    </QueryClientProvider>
-      {globalStyles()}
+      <QueryClientProvider client={queryClient}>
+        <MainContainer>
+          <Component {...pageProps} />
+        </MainContainer>
+      </QueryClientProvider>
     </>
   )
 }

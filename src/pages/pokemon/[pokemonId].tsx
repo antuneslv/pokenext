@@ -12,7 +12,7 @@ import {
   HightContainer,
 } from '../../styles/pokemon'
 
-interface Pokemon {
+interface PokemonDetail {
   name: string
   types: [
     {
@@ -46,16 +46,18 @@ interface Pokemon {
 
 const Pokemon = () => {
   const router = useRouter()
-  const [id, setId] = useState(router.query.pokemonId)
+  const [id, setId] = useState('')
 
   useEffect(() => {
-    setId(router.query.pokemonId)
-  }, [router.query.pokemonId])
+    if (router.isReady) {
+      setId(router.query.pokemonId as string)
+    }
+  }, [router.isReady, router.query.pokemonId])
 
-  const { data } = useQuery<Pokemon>(
+  const { data, error } = useQuery<PokemonDetail>(
     ['pokemon', id],
     async () => {
-      const response = await api.get(`/${id}`) 
+      const response = await api.get(`/${id}`)
       const { name, types, height, weight } = response.data
 
       return { name, types, height, weight, id }
@@ -66,7 +68,9 @@ const Pokemon = () => {
     }
   )
 
-  if (data) {
+  if (error) router.push('/404')
+
+  if (id && data) {
     return (
       <Container>
         <h1>{data.name}</h1>

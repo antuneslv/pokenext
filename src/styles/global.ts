@@ -3,7 +3,7 @@ import { globalCss } from '@stitches/react'
 export const globalStyles = globalCss({
   '@font-face': {
     fontFamily: 'pokemon-solid',
-    src: 'local("pokemon-solid"), url("fonts/pokemon-solid.woff")'
+    src: 'local("pokemon-solid"), url("../fonts/pokemon-solid.woff")'
   },
 
   '*': {
