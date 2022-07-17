@@ -25,11 +25,25 @@ const Generations = () => {
   const [previousGenPokemons, setPreviousGenPokemons] = useState(0)
   const [diffGenPokemons, setDiffGenPokemons] = useState(0)
   const [genNumber, setGenNumber] = useState('')
+  const [validPath, setvalidPath] = useState(true)
 
+  
   useEffect(() => {
     if (router.isReady) {
+      const paths = [
+        'gen-one',
+        'gen-two',
+        'gen-three',
+        'gen-four',
+        'gen-five',
+        'gen-six',
+        'gen-seven',
+        'gen-eight'
+      ]
       const gen = router.query.genNumber as string
-      setCurrentGen(gen.split('-')[1])
+      const checkPath = paths.includes(gen)
+      setvalidPath(checkPath)
+      checkPath && setCurrentGen(gen.split('-')[1])
     }
   }, [router.isReady, router.query.genNumber])
 
@@ -90,7 +104,7 @@ const Generations = () => {
     setFilteredPokemon(filter)
   }
 
-  if (error) router.push('/404')
+  if (error || !validPath) router.push('/404')
 
   if (genNumber) {
     return (
