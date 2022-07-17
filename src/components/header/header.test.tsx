@@ -1,12 +1,14 @@
 import { render, screen, fireEvent } from '@testing-library/react'
 import Header from '.'
 
+const mockBackFunction = jest.fn()
+
 jest.mock('next/router', () => {
   return {
     useRouter() {
       return {
         route: '/pokemon/[pokemonId]',
-        back: jest.fn()
+        back: mockBackFunction
       }
     }
   }
@@ -26,5 +28,7 @@ describe('Header', () => {
     const backButton = screen.getByText('Voltar')
 
     fireEvent.click(backButton)
+
+    expect(mockBackFunction).toHaveBeenCalledTimes(1)
   })
 })
