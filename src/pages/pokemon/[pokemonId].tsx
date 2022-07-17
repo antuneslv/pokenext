@@ -54,7 +54,7 @@ const Pokemon = () => {
     }
   }, [router.isReady, router.query.pokemonId])
 
-  const { data } = useQuery<Pokemon>(
+  const { data, error } = useQuery<Pokemon>(
     ['pokemon', id],
     async () => {
       const response = await api.get(`/${id}`) 
@@ -67,6 +67,8 @@ const Pokemon = () => {
       staleTime: 1000 * 60
     }
   )
+
+  if (error) router.push('/404')
 
   if (id && data) {
     return (

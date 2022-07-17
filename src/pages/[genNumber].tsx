@@ -43,7 +43,7 @@ const Generations = () => {
     }
   }, [currentGen])
 
-  const { data } = useQuery<PokemonCard[]>(
+  const { data, error } = useQuery<PokemonCard[]>(
     [
       `gen-${currentGen}-List`,
       currentGen,
@@ -89,6 +89,8 @@ const Generations = () => {
     })
     setFilteredPokemon(filter)
   }
+
+  if (error) router.push('/404')
 
   if (genNumber) {
     return (
