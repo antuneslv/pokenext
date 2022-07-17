@@ -46,11 +46,13 @@ interface Pokemon {
 
 const Pokemon = () => {
   const router = useRouter()
-  const [id, setId] = useState(router.query.pokemonId)
+  const [id, setId] = useState('')
 
   useEffect(() => {
-    setId(router.query.pokemonId)
-  }, [router.query.pokemonId])
+    if (router.isReady) {
+      setId(router.query.pokemonId as string)
+    }
+  }, [router.isReady, router.query.pokemonId])
 
   const { data } = useQuery<Pokemon>(
     ['pokemon', id],
@@ -66,7 +68,7 @@ const Pokemon = () => {
     }
   )
 
-  if (data) {
+  if (id && data) {
     return (
       <Container>
         <h1>{data.name}</h1>
