@@ -1,8 +1,8 @@
-import { Main } from '../styles/about'
+import { Container } from '../styles/about'
 
 const About = () => {
   return (
-    <Main>
+    <Container>
       <h2>Sobre</h2>
 
       <p>
@@ -38,7 +38,7 @@ const About = () => {
         </a>{' '}
         © 2022
       </p>
-    </Main>
+    </Container>
   )
 }
 

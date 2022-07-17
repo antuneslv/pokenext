@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Main, LinksContainer } from '../styles'
+import { Container, LinksContainer } from '../styles'
 
 const Home: NextPage = () => {
 
@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link rel='icon' href='/images/favicon.ico' />
         <title>Poke Dex</title>
       </Head>
-      <Main>
+      <Container>
         <h2>
           Poké<span>Next</span>
         </h2>
@@ -41,7 +41,7 @@ const Home: NextPage = () => {
             <a>Gen VIII</a>
           </Link>
         </LinksContainer>
-      </Main>
+      </Container>
     </>
   )
 }
