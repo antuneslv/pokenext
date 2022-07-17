@@ -12,7 +12,7 @@ import {
   HightContainer,
 } from '../../styles/pokemon'
 
-interface Pokemon {
+interface PokemonDetail {
   name: string
   types: [
     {
@@ -54,10 +54,10 @@ const Pokemon = () => {
     }
   }, [router.isReady, router.query.pokemonId])
 
-  const { data, error } = useQuery<Pokemon>(
+  const { data, error } = useQuery<PokemonDetail>(
     ['pokemon', id],
     async () => {
-      const response = await api.get(`/${id}`) 
+      const response = await api.get(`/${id}`)
       const { name, types, height, weight } = response.data
 
       return { name, types, height, weight, id }
